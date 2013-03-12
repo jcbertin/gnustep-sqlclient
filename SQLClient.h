@@ -492,7 +492,7 @@ SQLCLIENT_PRIVATE
  * or -cache:simpleQuery:recordType:listType: methods.
  * </p>
  */
-- (NSString*) buildQuery: (NSString*)stmt,...;
+- (NSString*) buildQuery: (NSString*)stmt, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Takes the query statement and substitutes in values from
@@ -590,7 +590,7 @@ SQLCLIENT_PRIVATE
  * the number of rows to which the operation applied.  Otherwise this
  * returns -1.
  */
-- (NSInteger) execute: (NSString*)stmt,...;
+- (NSInteger) execute: (NSString*)stmt, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Takes the statement and substitutes in values from
@@ -705,7 +705,7 @@ SQLCLIENT_PRIVATE
  * <p>Date and timestamp field items are returned as NSDate objects.
  * </p>
  */
-- (NSMutableArray*) query: (NSString*)stmt,...;
+- (NSMutableArray*) query: (NSString*)stmt, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Takes the query statement and substitutes in values from
@@ -746,7 +746,7 @@ SQLCLIENT_PRIVATE
 /**
  * Produce a quoted string from the supplied arguments (printf style).
  */
-- (NSString*) quotef: (NSString*)fmt, ...;
+- (NSString*) quotef: (NSString*)fmt, ... NS_FORMAT_FUNCTION(1,2);
 
 /**
  * Convert a big (64 bit) integer to a string suitable for use in an SQL query.
@@ -1162,7 +1162,7 @@ SQLCLIENT_PRIVATE
  * (raising an exception if the query did not contain a single record)
  * and returns the resulting record.
  */
-- (SQLRecord*) queryRecord: (NSString*)stmt,...;
+- (SQLRecord*) queryRecord: (NSString*)stmt, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Executes a query (like the -query:,... method) and checks the result.<br />
@@ -1170,7 +1170,7 @@ SQLCLIENT_PRIVATE
  * if the record did not contain a single field.<br />
  * Returns the resulting field as a <em>string</em>.
  */
-- (NSString*) queryString: (NSString*)stmt,...;
+- (NSString*) queryString: (NSString*)stmt, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Convenience method to deal with the results of a query where each
@@ -1227,7 +1227,7 @@ SQLCLIENT_PRIVATE
  * The default implementation calls NSLogv to log a debug message.<br />
  * Override this in a category to provide more sophisticated logging.
  */
-- (void) debug: (NSString*)fmt, ...;
+- (void) debug: (NSString*)fmt, ... NS_FORMAT_FUNCTION(1,2);
 
 /**
  * Return the current debugging level.<br />
@@ -1279,7 +1279,7 @@ SQLCLIENT_PRIVATE
  * stmt and the following values (if any).
  */
 - (NSMutableArray*) cache: (int)seconds
-		    query: (NSString*)stmt,...;
+		    query: (NSString*)stmt, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Calls -cache:simpleQuery:recordType:listType: with the default
@@ -1382,7 +1382,7 @@ SQLCLIENT_PRIVATE
  * [SQLClient-execute:,...] but does not cause any database operation
  * until -execute is called, so it will not raise a database exception.
  */
-- (void) add: (NSString*)stmt,...;
+- (void) add: (NSString*)stmt, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Adds an SQL statement to the transaction.  This is similar to
